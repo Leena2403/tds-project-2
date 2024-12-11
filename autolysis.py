@@ -1,4 +1,24 @@
 from credentials import *
+# in case credentials file don't get imported i am also importing functions separately 
+from dotenv import load_dotenv
+import os
+import sys
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+load_dotenv()
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+import sys
+from sklearn.impute import SimpleImputer
+import requests
+
+
 
 def get_description(data):
     '''
@@ -14,6 +34,8 @@ def load_data():
         return pd.read_csv(sys.argv[1], encoding='ISO-8859-1')
     except:
         raise Exception("Dataset file is missing. Use: uv run autolysis.py <CSV FILE PATH>")
+
+
 
 # Summary statistics visualization 
 def summary_statistics_plot():
@@ -144,6 +166,7 @@ def llm_analysis(description):
         print(f"Error Fetching the summary. Status code: {response.status_code}")
         print(f"Response content: {response.content}")
 
+load_dotenv()
 data = load_data()
 
 name = name_file(sys.argv[1])
